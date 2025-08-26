@@ -1,0 +1,1 @@
+const button=document.querySelectorAll(".gradient-btn")
