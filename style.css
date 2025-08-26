@@ -23,9 +23,11 @@ main {
     background: hsl(0, 0%, 95%);
     border-radius: 1.3em;
     display: flex;
+    align-items: center;
     flex-direction: column;
     gap: 1.5rem;
     padding: 1rem; 
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
 
 .display-gradient {
@@ -35,7 +37,35 @@ main {
     background: linear-gradient(to right, hsl(0, 100%, 40%), hsl(250, 100%, 40%));
     border-radius: 1.4rem;
 }
+.controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+.inputs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
 
-.list-gradients {
-    
+
+.color-picker-wrapper{
+    position: relative;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.color-picker-wrapper input[type="color"]{
+     position: absolute;
+     outline: none;
+     width: 200%;
+     height: 200%;
+     left:-50%;
+     top:-50%;
+     cursor: pointer;
 }

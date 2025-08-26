@@ -4,14 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gradient Generator</title>
+
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
     <div class="generate-container">   
            <main>
-             <div class="display-gradient"></div>
-             <div class="input-control">
-                 <label for=""></label>
+             <div class="display-gradient" id="card-gradient"></div>
+             <div class="controls">
+                 <div class="inputs">
+                     <label for="start">start</label>
+                     <div class="color-picker-wrapper">
+                         <input type="color" id="startColorInput" />
+                     </div>
+                      <span class="color-value" id="startColorValue"></span>
+                 </div>  
+                 <div class="inputs">
+                     <label for="start">via</label>
+                     <div class="color-picker-wrapper">
+                         <input type="color" id="midColorInput" />
+                     </div>
+                      <span class="color-value" id="midColorValue"></span>
+                 </div> 
+                   <div class="inputs">
+                     <label for="start">end</label>
+                     <div class="color-picker-wrapper">
+                         <input type="color" id="endColorInput"/>
+                     </div>
+                      <span class="color-value" id="endColorValue"></span>
+                 </div>    
+                  <button id="generateLinearBtn">linear Gradient</button>
+                  <button id="generateRadialBtn">radial gradient</button>
+                 <code  class="output-code"></code>
+
              </div>
                   
              </div>
@@ -20,6 +46,7 @@
     </div>
     <div class="list-gradients">
 
-    </div>    
+    </div> 
+    <script type="module" src="index.js"></script>   
 </body>
 </html>
