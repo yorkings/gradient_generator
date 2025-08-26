@@ -1,0 +1,41 @@
+body {    
+    height: 100vh;
+    font-family: Helvetica, sans-serif;
+    background: linear-gradient(to top right, #e0e0e0, #a0a0a0);
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+}
+
+.generate-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 30%;
+    
+}
+
+main {
+    height: 40rem;
+    width: clamp(200px, 70%, 700px); 
+    background: hsl(0, 0%, 95%);
+    border-radius: 1.3em;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1rem; 
+}
+
+.display-gradient {
+    margin-top: 1.5rem; 
+    height: 10rem;
+    width: 80%; 
+    background: linear-gradient(to right, hsl(0, 100%, 40%), hsl(250, 100%, 40%));
+    border-radius: 1.4rem;
+}
+
+.list-gradients {
+    
+}
