@@ -1,53 +1,80 @@
-html,body{
-    height: max(100%, 100vh);
-}
-body {        
-    font-family: 'Inter', Helvetica, sans-serif;
-    background: linear-gradient(to top right, #e0e0e0, #a0a0a0);
+html, body {
     margin: 0;
+    padding: 0;
+    min-height: 100%;
+    width: 100%;
+    background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+body {
+    font-family: 'Inter', Helvetica, sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: #222;
+    color: #fff;
+    overflow-x: hidden;
 }
 
-* {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
+::-webkit-scrollbar {
+    width: 10px;
 }
+
+::-webkit-scrollbar-track {
+    background: rgba(255,255,255,0.05);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #4776e6, #8e54e9);
+    border-radius: 10px;
+    border: 2px solid rgba(0,0,0,0.2);
+    transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #ff512f, #dd2476);
+}
+
 
 /* === Main Container === */
 .generate-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 2rem;
+    padding: 3rem 2rem;
     width: 100%;
+    animation: fadeIn 1s ease-out;
 }
 
 main {
     width: 100%;
-    max-width: 800px;
-    background:linear-gradient(315deg,hsl(15,10%,95%) 30%,hsl(122,0%,75%) 80%);
-    backdrop-filter: blur(12px);
-    border-radius: 1.5rem;
+    max-width: 900px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(18px) saturate(180%);
+    border-radius: 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2rem;
-    padding: 2rem; 
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    gap: 2.5rem;
+    padding: 3rem 2rem;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
+    transform: translateY(20px);
+    animation: slideUp 0.8s ease forwards;
 }
 
 /* === Gradient Display === */
 .display-gradient {
-    width: 80%;
-    height:20vh;
-    border-radius: 1.5rem;
-    background: linear-gradient(to right, hsl(0, 100%, 40%), hsl(250, 100%, 40%));
-    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.1);
-    transition: background 0.3s ease-in-out;
+    width: 90%;
+    height: 25vh;
+    border-radius: 1.8rem;
+    background: linear-gradient(to right, #ff6a00, #ee0979);
+    box-shadow: inset 0 0 20px rgba(255,255,255,0.2), 0 12px 40px rgba(0,0,0,0.35);
+    transition: background 0.6s ease, transform 0.3s ease;
+}
+.display-gradient:hover {
+    transform: scale(1.02);
 }
 
 /* === Controls Section === */
@@ -66,26 +93,25 @@ main {
     gap: 0.6rem;
     font-size: 0.9rem;
     font-weight: 500;
-    color: #333;
+    color: #eee;
+    animation: float 6s ease-in-out infinite;
 }
 
 .color-picker-wrapper {
     position: relative;
-    width: 65px;
-    height: 65px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
     overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-    transition: transform 0.2s ease;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.35);
+    transition: transform 0.3s ease;
 }
-
 .color-picker-wrapper:hover {
-    transform: scale(1.08);
+    transform: scale(1.15) rotate(8deg);
 }
 
 .color-picker-wrapper input[type="color"] {
     position: absolute;
-    outline: none;
     width: 200%;
     height: 200%;
     left: -50%;
@@ -97,123 +123,195 @@ main {
 
 .color-value {
     font-family: monospace;
-    font-size: 0.8rem;
-    color: #555;
+    font-size: 0.85rem;
+    color: #bbb;
 }
 
 /* === Buttons === */
 .btn-class {
     display: flex;
-    gap: 1rem;
+    gap: 1.2rem;
     flex-wrap: wrap;
     justify-content: center;
     width: 100%;
 }
 
 .btn {
-    padding: 0.9rem 1.5rem;
+    padding: 1rem 1.6rem;
     font-size: 0.95em;
     border-radius: 2rem;
     border: none;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.4s ease;
     color: #fff;
-    min-width: 160px;
+    min-width: 170px;
     text-align: center;
+    letter-spacing: 0.5px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Gradient hover glow */
+.btn::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.2), transparent 70%);
+    transform: scale(0);
+    transition: transform 0.5s ease;
+}
+.btn:hover::after {
+    transform: scale(1);
 }
 
 /* Linear Button */
 .LinearBtn {
-    background: linear-gradient(90deg, hsl(202, 70%, 45%), hsl(240, 70%, 50%));
+    background: linear-gradient(90deg, #4776e6, #8e54e9);
 }
 .LinearBtn:hover {
-    background: linear-gradient(90deg, hsl(0, 85%, 55%), hsl(27, 90%, 45%));
-    transform: translateY(-2px);
+    background: linear-gradient(90deg, #ff512f, #dd2476);
+    transform: translateY(-3px) scale(1.05);
 }
 
 /* Radial Button */
 .RadialBtn {
-    background: radial-gradient(circle at center, hsl(51, 95%, 50%), hsl(126, 80%, 35%));
+    background: radial-gradient(circle at center, #ff9966, #ff5e62);
 }
 .RadialBtn:hover {
-    background: radial-gradient(circle, hsl(200, 100%, 50%), hsl(280, 100%, 55%));
-    transform: translateY(-2px);
+    background: radial-gradient(circle at center, #36d1dc, #5b86e5);
+    transform: translateY(-3px) scale(1.05);
 }
 
-
+/* === Code Output === */
 .output-code {
     display: block;
-    padding: 0.8rem 1rem;
-    background: #fafafa;
-    border-radius: 0.8rem;
-    font-size: 0.85rem;
+    padding: 1rem 1.4rem;
+    background: rgba(255,255,255,0.07);
+    border-radius: 0.9rem;
+    font-size: 0.9rem;
     font-family: 'Courier New', Courier, monospace;
-    color: #333;
-    word-break: break-word;
-    border: 1px solid #ddd;
+    color: #eee;
+    border: 1px solid rgba(255,255,255,0.2);
     max-width: 100%;
     overflow-x: auto;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.4);
 }
 
+/* === Gradient List Section === */
 .list-gradients {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 1.5rem;
     padding: 2rem;
     width: 100%;
     max-width: 1200px;
+    margin: 2rem auto;
+    box-sizing: border-box;
 }
 
+/* Each Card */
 .list-card {
-    background: #ffffff;
-    border-radius: 1rem;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 1.5rem;
+    padding: 1rem;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    gap: 0.8rem;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
 }
 
 .list-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.45);
 }
 
-.list-card img {
+/* Gradient Preview inside each card */
+.list-card .preview {
     width: 100%;
-    height: 160px;
-    object-fit: cover;
-    border-bottom: 1px solid #eee;
+    aspect-ratio: 16 / 9;
+    border-radius: 1rem;
+    box-shadow: inset 0 0 10px rgba(255,255,255,0.15), 0 6px 15px rgba(0,0,0,0.25);
+    transition: transform 0.3s ease;
 }
 
+.list-card:hover .preview {
+    transform: scale(1.05);
+}
+
+/* Gradient Code below preview */
 .list-card h4 {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     font-family: monospace;
-    color: #555;
-    padding: 0.8rem;
+    color: #ddd;
     text-align: center;
     word-break: break-all;
+}
+
+/* Pagination at bottom center */
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 0.8rem;
+    margin: 2rem auto;
+}
+
+.pagination button {
+    background: rgba(255, 255, 255, 0.12);
+    border: none;
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    font-size: 0.9rem;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.pagination button:hover {
+    background: linear-gradient(135deg, #4776e6, #8e54e9);
+    transform: translateY(-2px);
+}
+
+.pagination button.active {
+    background: linear-gradient(135deg, #ff512f, #dd2476);
+    font-weight: bold;
+}
+
+
+/* === Animations === */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+@keyframes slideUp {
+    from { transform: translateY(40px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
 }
 
 /* === Responsiveness === */
 @media (max-width: 768px) {
     main {
-        padding: 1.5rem;
+        padding: 2rem 1.5rem;
         gap: 1.5rem;
     }
-    .controls {
-        gap: 1.2rem;
-    }
     .btn {
-        min-width: 120px;
+        min-width: 140px;
         font-size: 0.85rem;
         padding: 0.8rem 1.2rem;
     }
     .display-gradient {
         width: 100%;
-        height: 10rem;
+        height: 12rem;
     }
 }
