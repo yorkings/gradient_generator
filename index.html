@@ -12,7 +12,9 @@
     <div class="generate-container">   
            <main>
              <div class="display-gradient" id="card-gradient"></div>
+             <h1> two colors:start and end</h1>
              <div class="controls">
+                 
                  <div class="inputs">
                      <label for="start">start</label>
                      <div class="color-picker-wrapper">
@@ -33,20 +35,26 @@
                          <input type="color" id="endColorInput"/>
                      </div>
                       <span class="color-value" id="endColorValue"></span>
-                 </div>    
-                  <button id="generateLinearBtn">linear Gradient</button>
-                  <button id="generateRadialBtn">radial gradient</button>
-                 <code  class="output-code"></code>
+                 </div>                      
+                
 
              </div>
-                  
+                 <div class="btn-class"> 
+                    <button id="LinearBtn1" class="btn LinearBtn">3 colors linear Gradient</button>
+                     <button id="RadialBtn1" class="btn RadialBtn">3 colors radial gradient</button>
+                 </div>
+                 <div class="btn-class"> 
+                    <button id="LinearBtn2" class="btn LinearBtn">2 colors linear Gradient</button>
+                     <button id="RadialBtn2" class="btn  RadialBtn">2 colors radial gradient</button>
+                 </div>
+                 <div class="">
+                        <code  class="output-code"></code>
+                 </div> 
              </div>
              
            </main>
     </div>
-    <div class="list-gradients">
-
-    </div> 
+    <div class="list-gradients"></div> 
     <script type="module" src="index.js"></script>   
 </body>
 </html>

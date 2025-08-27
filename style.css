@@ -1,71 +1,219 @@
-body {    
-    height: 100vh;
-    font-family: Helvetica, sans-serif;
+html,body{
+    height: max(100%, 100vh);
+}
+body {        
+    font-family: 'Inter', Helvetica, sans-serif;
     background: linear-gradient(to top right, #e0e0e0, #a0a0a0);
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #222;
 }
 
 * {
     box-sizing: border-box;
     padding: 0;
+    margin: 0;
 }
 
+/* === Main Container === */
 .generate-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 30%;
-    
+    padding: 2rem;
+    width: 100%;
 }
 
 main {
-    height: 40rem;
-    width: clamp(200px, 70%, 700px); 
-    background: hsl(0, 0%, 95%);
-    border-radius: 1.3em;
+    width: 100%;
+    max-width: 800px;
+    background:linear-gradient(315deg,hsl(15,10%,95%) 30%,hsl(122,0%,75%) 80%);
+    backdrop-filter: blur(12px);
+    border-radius: 1.5rem;
     display: flex;
-    align-items: center;
     flex-direction: column;
-    gap: 1.5rem;
-    padding: 1rem; 
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-}
-
-.display-gradient {
-    margin-top: 1.5rem; 
-    height: 10rem;
-    width: 80%; 
-    background: linear-gradient(to right, hsl(0, 100%, 40%), hsl(250, 100%, 40%));
-    border-radius: 1.4rem;
-}
-.controls {
-    display: flex;
-    justify-content: center;
     align-items: center;
     gap: 2rem;
+    padding: 2rem; 
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
 }
+
+/* === Gradient Display === */
+.display-gradient {
+    width: 80%;
+    height:20vh;
+    border-radius: 1.5rem;
+    background: linear-gradient(to right, hsl(0, 100%, 40%), hsl(250, 100%, 40%));
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s ease-in-out;
+}
+
+/* === Controls Section === */
+.controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    width: 100%;
+}
+
 .inputs {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.6rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #333;
 }
 
-
-.color-picker-wrapper{
+.color-picker-wrapper {
     position: relative;
-    width: 60px;
-    height: 60px;
+    width: 65px;
+    height: 65px;
     border-radius: 50%;
     overflow: hidden;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s ease;
 }
 
-.color-picker-wrapper input[type="color"]{
-     position: absolute;
-     outline: none;
-     width: 200%;
-     height: 200%;
-     left:-50%;
-     top:-50%;
-     cursor: pointer;
+.color-picker-wrapper:hover {
+    transform: scale(1.08);
+}
+
+.color-picker-wrapper input[type="color"] {
+    position: absolute;
+    outline: none;
+    width: 200%;
+    height: 200%;
+    left: -50%;
+    top: -50%;
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+
+.color-value {
+    font-family: monospace;
+    font-size: 0.8rem;
+    color: #555;
+}
+
+/* === Buttons === */
+.btn-class {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+}
+
+.btn {
+    padding: 0.9rem 1.5rem;
+    font-size: 0.95em;
+    border-radius: 2rem;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #fff;
+    min-width: 160px;
+    text-align: center;
+}
+
+/* Linear Button */
+.LinearBtn {
+    background: linear-gradient(90deg, hsl(202, 70%, 45%), hsl(240, 70%, 50%));
+}
+.LinearBtn:hover {
+    background: linear-gradient(90deg, hsl(0, 85%, 55%), hsl(27, 90%, 45%));
+    transform: translateY(-2px);
+}
+
+/* Radial Button */
+.RadialBtn {
+    background: radial-gradient(circle at center, hsl(51, 95%, 50%), hsl(126, 80%, 35%));
+}
+.RadialBtn:hover {
+    background: radial-gradient(circle, hsl(200, 100%, 50%), hsl(280, 100%, 55%));
+    transform: translateY(-2px);
+}
+
+
+.output-code {
+    display: block;
+    padding: 0.8rem 1rem;
+    background: #fafafa;
+    border-radius: 0.8rem;
+    font-size: 0.85rem;
+    font-family: 'Courier New', Courier, monospace;
+    color: #333;
+    word-break: break-word;
+    border: 1px solid #ddd;
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+.list-gradients {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.list-card {
+    background: #ffffff;
+    border-radius: 1rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.list-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.list-card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-bottom: 1px solid #eee;
+}
+
+.list-card h4 {
+    font-size: 0.8rem;
+    font-family: monospace;
+    color: #555;
+    padding: 0.8rem;
+    text-align: center;
+    word-break: break-all;
+}
+
+/* === Responsiveness === */
+@media (max-width: 768px) {
+    main {
+        padding: 1.5rem;
+        gap: 1.5rem;
+    }
+    .controls {
+        gap: 1.2rem;
+    }
+    .btn {
+        min-width: 120px;
+        font-size: 0.85rem;
+        padding: 0.8rem 1.2rem;
+    }
+    .display-gradient {
+        width: 100%;
+        height: 10rem;
+    }
 }
