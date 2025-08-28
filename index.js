@@ -1,4 +1,4 @@
-import { SaveData, updateGradient } from "./data/classes_required.js";
+import { updateGradient, SaveData } from "./data/classes_required.js";
 
 export const card = document.getElementById("card-gradient");
 export const code = document.querySelector(".output-code");
@@ -16,73 +16,47 @@ const labels_1= {
   end: document.getElementById("endColorValue"),
 };
 
-const GradientsPerPage =2;
-let currentPage=1;
-export const getStoredGradients=()=>JSON.parse(localStorage.getItem("gradients"))||[]
+const GradientsPerPage = 20;
+let currentPage = 1;
+export const getStoredGradients = () => JSON.parse(localStorage.getItem("gradients")) || [];
 
-const updateGradientDisplay=()=>{
+// Unified function to handle gradient generation and saving
+const handleGradientGeneration = (type, count, isRandom) => {
+    const generator = new updateGradient(type, count);
+    const gradient = isRandom ? generator.randomBuildGradient() : generator.buildGradient();
+    generator.applyGradient(gradient);
+    const saver = new SaveData(gradient, type);
+    saver.checkGradientAndSave();
+};
+
+const updateGradientDisplay = () => {
     Object.keys(pickers_1).forEach((key) => {
     labels_1[key].innerText = pickers_1[key].value;
   });
 }
-const updatelinearGradient1=()=>{
-    const g1= new updateGradient('linear',3);
-    const gradient=g1.buildGradient();
-    g1.applyGradient(gradient)
-    const sav=new SaveData(gradient,'linear') 
-    sav.checkGradientAndSave()  
-}
-const updatelinearGradient2=()=>{
-    const g2= new updateGradient('linear',2);
-    const gradient=g2.buildGradient();
-    g2.applyGradient(gradient)
-    const sav=new SaveData(gradient,'linear') 
-    sav.checkGradientAndSave()    
-}
-
-const updateradialGradient1=()=>{
-    const r1= new updateGradient('radial',3);
-    const gradient=r1.buildGradient();
-    r1.applyGradient(gradient)  
-    const sav=new SaveData(gradient,'radial') 
-    sav.checkGradientAndSave() 
-}
-
-const updateradialGradient2=()=>{
-    const r2= new updateGradient('radial',3);
-    const gradient=r2.buildGradient();
-    r2.applyGradient(gradient)  
-    const sav=new SaveData(gradient,'radial') 
-    sav.checkGradientAndSave() 
-}
-
 
 const renderPagination = (gradients) => {
   const totalPages = Math.ceil(gradients.length / GradientsPerPage);
   const page = document.querySelector(".pagination");
   page.innerHTML = ""; 
 
-  const maxVisible = 5; // number of page buttons visible at once
+  const maxVisible = 5;
   let start = Math.max(1, currentPage - Math.floor(maxVisible / 2));
   let end = Math.min(totalPages, start + maxVisible - 1);
 
-  // Adjust start if we’re at the end
   if (end - start < maxVisible - 1) {
     start = Math.max(1, end - maxVisible + 1);
   }
 
-  // Always show "1" if not in range
   if (start > 1) {
     addButton(1);
     if (start > 2) addEllipsis();
   }
 
-  // Middle range
   for (let i = start; i <= end; i++) {
     addButton(i);
   }
 
-  // Always show "last" if not in range
   if (end < totalPages) {
     if (end < totalPages - 1) addEllipsis();
     addButton(totalPages);
@@ -112,26 +86,31 @@ const renderPagination = (gradients) => {
 export const renderGradientList = (gradients) => {
   const start = (currentPage - 1) * GradientsPerPage;
   const end = start + GradientsPerPage;
-  const paginated = gradients.slice(start, end);
+  const sortGradients = gradients.sort((a,b) => b.time - a.time);
+  const paginated = sortGradients.slice(start, end);
 
   contents.innerHTML = paginated.map((g) => `
       <div class="list-card">
         <div class="preview" style="background:${g.key}"></div>
         <h4>${g.key}</h4>
       </div>`
-    )
-    .join("");
+    ).join("");
 
   renderPagination(gradients);
 };
 
+// Event Listeners - now cleaner and more efficient
 Object.keys(pickers_1).forEach((key) => {
-  pickers_1[key].addEventListener('input',updateGradientDisplay );
+  pickers_1[key].addEventListener('input', updateGradientDisplay);
 });
 
-document.getElementById("LinearBtn1").addEventListener('click',updatelinearGradient1)
-document.getElementById("LinearBtn2").addEventListener('click',updatelinearGradient2)
-document.getElementById("RadialBtn1").addEventListener('click',updateradialGradient1)
-document.getElementById("RadialBtn2").addEventListener('click',updateradialGradient2)
+document.getElementById("LinearBtn1").addEventListener('click', () => handleGradientGeneration('linear', 3, false));
+document.getElementById("LinearBtn2").addEventListener('click', () => handleGradientGeneration('linear', 2, false));
+document.getElementById("RadialBtn1").addEventListener('click', () => handleGradientGeneration('radial', 3, false));
+document.getElementById("RadialBtn2").addEventListener('click', () => handleGradientGeneration('radial', 2, false)); // Fixed: changed to 2 colors as per your `updatelinearGradient2`
+document.getElementById("RandomBtn1").addEventListener('click', () => handleGradientGeneration('linear', 2, true));
+document.getElementById("RandomBtn2").addEventListener('click', () => handleGradientGeneration('radial', 2, true));
+
+// Initial setup
 updateGradientDisplay();
 renderGradientList(getStoredGradients());

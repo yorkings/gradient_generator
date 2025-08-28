@@ -10,49 +10,67 @@
 </head>
 <body>
     <div class="generate-container">   
-           <main>
-             <div class="display-gradient" id="card-gradient"></div>
-             <h1> two colors:start and end</h1>
-             <div class="controls">
-                 
-                 <div class="inputs">
-                     <label for="start">start</label>
-                     <div class="color-picker-wrapper">
-                         <input type="color" id="startColorInput" />
-                     </div>
-                      <span class="color-value" id="startColorValue"></span>
-                 </div>  
-                 <div class="inputs">
-                     <label for="start">via</label>
-                     <div class="color-picker-wrapper">
-                         <input type="color" id="midColorInput" />
-                     </div>
-                      <span class="color-value" id="midColorValue"></span>
-                 </div> 
-                   <div class="inputs">
-                     <label for="start">end</label>
-                     <div class="color-picker-wrapper">
-                         <input type="color" id="endColorInput"/>
-                     </div>
-                      <span class="color-value" id="endColorValue"></span>
-                 </div>                      
-                
+    <main>
+    <div class="display-controls">
+        <div class="display-gradient" id="card-gradient"></div>
 
-             </div>
-                 <div class="btn-class"> 
-                    <button id="LinearBtn1" class="btn LinearBtn">3 colors linear Gradient</button>
-                     <button id="RadialBtn1" class="btn RadialBtn">3 colors radial gradient</button>
-                 </div>
-                 <div class="btn-class"> 
-                    <button id="LinearBtn2" class="btn LinearBtn">2 colors linear Gradient</button>
-                     <button id="RadialBtn2" class="btn  RadialBtn">2 colors radial gradient</button>
-                 </div>
-                 <div class="">
-                        <code  class="output-code"></code>
-                 </div> 
-             </div>
-             
-           </main>
+        <div class="controls">
+        <div class="inputs">
+            <label for="start">start</label>
+            <div class="color-picker-wrapper">
+            <input type="color" id="startColorInput" />
+            </div>
+            <span class="color-value" id="startColorValue"></span>
+        </div>
+
+        <!-- via input marked for JS -->
+        <div class="inputs" id="viaInput">
+            <label for="mid">via</label>
+            <div class="color-picker-wrapper">
+            <input type="color" id="midColorInput" />
+            </div>
+            <span class="color-value" id="midColorValue"></span>
+        </div>
+
+        <div class="inputs">
+            <label for="end">end</label>
+            <div class="color-picker-wrapper">
+            <input type="color" id="endColorInput"/>
+            </div>
+            <span class="color-value" id="endColorValue"></span>
+        </div>
+        </div>
+    </div>
+
+    <!-- user hint about 2-color mode -->
+    <div class="mode-hint" id="modeHint" role="status" aria-live="polite">
+        Tip: For a 2-color background, select only <strong>Start</strong> and <strong>End</strong> (use the 2-color buttons).
+    </div>
+
+    <div class="display-container">
+        <div class="button-inputs">
+        <div class="btn-class">
+            <button id="LinearBtn1" class="btn LinearBtn">3-linear Gradient</button>
+            <button id="RadialBtn1" class="btn RadialBtn">3-radial gradient</button>
+        </div>
+
+        <div class="btn-class">
+            <button id="LinearBtn2" class="btn LinearBtn">2-linear Gradient</button>
+            <button id="RadialBtn2" class="btn RadialBtn">2-radial gradient</button>
+        </div>
+
+        <div class="btn-class">
+            <button id="RandomBtn1" class="btn RandomBtn">linear random generator</button>
+            <button id="RandomBtn2" class="btn RandomBtn">radial random generator</button>
+        </div>
+        </div>
+    </div>
+
+    <div>
+        <code class="output-code"></code>
+    </div>
+    </main>
+
     </div>
     <div class="list-gradients"></div> 
     <div class="pagination"></div>
