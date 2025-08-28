@@ -29,6 +29,20 @@ const handleGradientGeneration = (type, count, isRandom) => {
     saver.checkGradientAndSave();
 };
 
+let interval;
+const checkInifinty=(isInfinity)=>{
+   if(isInfinity){
+       clearInterval(interval);
+       interval=setInterval(() => {
+          let type=Math.random() <0.5?"linear":"radial"
+          handleGradientGeneration(type,2,true);
+      }, 5000);
+    }else{
+       clearInterval(interval);
+    }
+}
+
+
 const updateGradientDisplay = () => {
     Object.keys(pickers_1).forEach((key) => {
     labels_1[key].innerText = pickers_1[key].value;
@@ -110,6 +124,8 @@ document.getElementById("RadialBtn1").addEventListener('click', () => handleGrad
 document.getElementById("RadialBtn2").addEventListener('click', () => handleGradientGeneration('radial', 2, false)); // Fixed: changed to 2 colors as per your `updatelinearGradient2`
 document.getElementById("RandomBtn1").addEventListener('click', () => handleGradientGeneration('linear', 2, true));
 document.getElementById("RandomBtn2").addEventListener('click', () => handleGradientGeneration('radial', 2, true));
+document.getElementById("RandomBtn3").addEventListener('click', () => checkInifinty(true));
+document.getElementById("RandomBtn4").addEventListener('click', () => checkInifinty(false));
 
 // Initial setup
 updateGradientDisplay();
