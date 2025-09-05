@@ -34,7 +34,7 @@ const checkInifinty=(isInfinity)=>{
    if(isInfinity){
        clearInterval(interval);
        interval=setInterval(() => {
-          let type=Math.random() <0.5?"linear":"radial"
+          let type="linear"
           handleGradientGeneration(type,2,true);
       }, 2000);
     }else{
