@@ -15,7 +15,7 @@ export class updateGradient {
       stops.push(Math.floor(Math.random() * (100 - 67) + 67));
     } else {
       stops.push(0);
-      let randomStop = Math.floor(Math.random() * (100 - 50) + 50);
+      let randomStop =  100;
       stops.push(randomStop);
     }
     return stops.sort((a, b) => a - b);
